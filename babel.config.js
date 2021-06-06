@@ -17,6 +17,7 @@ module.exports = function(api) {
 
   return {
     presets: [
+      require('@babel/preset-typescript'),
       isTestEnv && [
         '@babel/preset-env',
         {
@@ -52,9 +53,6 @@ module.exports = function(api) {
       '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',
-        {
-          loose: true
-        }
       ],
       [
         '@babel/plugin-proposal-object-rest-spread',
