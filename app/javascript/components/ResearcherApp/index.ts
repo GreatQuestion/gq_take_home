@@ -1,0 +1,1 @@
+export { ResearcherApp } from './ResearcherApp';

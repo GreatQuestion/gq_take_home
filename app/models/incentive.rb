@@ -1,0 +1,2 @@
+class Incentive < ApplicationRecord
+end

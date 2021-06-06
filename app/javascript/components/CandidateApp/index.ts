@@ -1,0 +1,1 @@
+export { CandidateApp } from './CandidateApp'
