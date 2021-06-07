@@ -1,4 +1,4 @@
-class IncentivesController < ApplicationController
+class Api::IncentivesController < ApplicationController
 
   def index
     @incentives = Incentive.all
