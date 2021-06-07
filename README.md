@@ -33,6 +33,8 @@ Right now the app only supports a single coupon code. We want to extend the app 
 - Once redeemed, a coupon code must be marked as redeemed so that it cannot be used again. 
 - The researcher should be able to see which coupon codes have been redeemed, and add additional codes. 
 
+Please fork this repository for your changes, and make clean git commits with your changes.
+
 
 ## Instructions
 
