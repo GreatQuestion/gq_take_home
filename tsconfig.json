@@ -14,7 +14,8 @@
       "*": [
         "node_modules/*",
         "app/packs/*"
-      ]
+      ],
+      "@api/*": ["app/javascript/api/*"],
     },
     "sourceMap": true,
     "target": "es5",

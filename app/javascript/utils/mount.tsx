@@ -6,7 +6,6 @@ export function mount (id: string, Component: React.FC): void {
   if (!el) {
     return
   }
-  console.log(el)
   const props = el.dataset.props ? JSON.parse(el.dataset.props) : {}
   ReactDOM.render(<Component {...props} />, el);
 }

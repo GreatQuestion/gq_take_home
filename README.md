@@ -10,9 +10,10 @@ As part of running interviews or surveys, a researcher will often offer an incen
 
 For the purpose of this exercise, the researcher will only be issuing coupon codes to the candidate.
 
-After the interview is complete, the researcher sends the candidate the incentive which they then redeem. 
+After the survey is complete, the researcher sends the candidate a link to the incentive, which they then redeem.
 
 This is a basic application for managing that process.
+
 
 ## Current functionality
 
@@ -32,11 +33,33 @@ Right now the app only supports a single coupon code. We want to extend the app 
 - Once redeemed, a coupon code must be marked as redeemed so that it cannot be used again. 
 - The researcher should be able to see which coupon codes have been redeemed, and add additional codes. 
 
+
+## Instructions
+
+Prerequesites:
+ - Ruby 2.7
+ - Rails 6.0
+ - Node.js 14+
+ - Yarn (run `npm i -g yarn`)
+
+[Tailwind.CSS](https://tailwindcss.com/docs) is included as a set of utility-based functional CSS classes. Working knowledge of Tailwind is a plus, but not required. For a brief overview, check out the classes you get out of the box for [font colors](https://tailwindcss.com/docs/text-color) and [padding](https://tailwindcss.com/docs/padding).
+
+1. Clone the repo and run `bundle`
+1. Run `bundle exec rails db:migrate`
+1. Run `yarn` to install the frontend dependencies
+1. In two different terminal tabs/windows. run:
+  1. `bundle exec rails s` to run the API
+  1. `./bin/webpack-dev-server` to build the frontend app
+1. Visit `http://localhost:3000` in your browser
+1. Pages `/setup` and `/redeem` are implemented in `app/javascript/components/ResearcherApp` and `CandidateApp` respectively
+
+
 ## Out of scope
 
-- authentication is not required.
-- any excessive styling beyond making the app usable. 
+- Authentication is not required.
+- Any excessive styling beyond making the app usable.
+- Sophisticated error handling in the frontend app is not necessary.
 
 ## Additional
 
-- some extend the test suite for your new functionality. 
+- Some extending of the test suite for your new functionality. 
