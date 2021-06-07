@@ -45,13 +45,15 @@ Prerequesites:
 [Tailwind.CSS](https://tailwindcss.com/docs) is included as a set of utility-based functional CSS classes. Working knowledge of Tailwind is a plus, but not required. For a brief overview, check out the classes you get out of the box for [font colors](https://tailwindcss.com/docs/text-color) and [padding](https://tailwindcss.com/docs/padding).
 
 1. Clone the repo and run `bundle`
-1. Run `bundle exec rails db:migrate`
-1. Run `yarn` to install the frontend dependencies
-1. In two different terminal tabs/windows. run:
+2. Run `bundle exec rails db:create db:migrate`
+3. Run `yarn` to install the frontend dependencies
+4. Run `bundle exec rails test` to ensure the unit tests are passing
+5.  Run `bundle exec rails test:system` to ensure the system tests are passing
+6. In two different terminal tabs/windows. run:
   1. `bundle exec rails s` to run the API
-  1. `./bin/webpack-dev-server` to build the frontend app
-1. Visit `http://localhost:3000` in your browser
-1. Pages `/setup` and `/redeem` are implemented in `app/javascript/components/ResearcherApp` and `CandidateApp` respectively
+  2. `./bin/webpack-dev-server` to build the frontend app
+7. Visit `http://localhost:3000` in your browser
+8. Pages `/setup` and `/redeem` are implemented in `app/javascript/components/ResearcherApp` and `CandidateApp` respectively
 
 
 ## Out of scope
@@ -60,6 +62,6 @@ Prerequesites:
 - Any excessive styling beyond making the app usable.
 - Sophisticated error handling in the frontend app is not necessary.
 
-## Additional
+## Testing
 
-- Some extending of the test suite for your new functionality. 
+There are currently two areas tested - the controllers and basic system tests. It is expected that the test suite will be extended to support your new functionality. 
