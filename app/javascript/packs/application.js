@@ -10,11 +10,13 @@ require("channels")
 
 import { ResearcherApp } from  'components/ResearcherApp'
 import { CandidateApp } from  'components/CandidateApp'
+import { LoginApp } from  'components/LoginApp'
 import { mount, docReady } from 'utils'
 
 docReady(() => {
   mount('ResearcherApp', ResearcherApp)
   mount('CandidateApp', CandidateApp)
+  mount('LoginApp', LoginApp)
 })
 
 

@@ -1,5 +1,8 @@
 FactoryBot.define do
-  factory :incentive do
-    code {SecureRandom.hex(6)}
+  factory :user, class: 'User'
+
+  factory :incentive, class: 'Incentive' do |i|
+    i.code { SecureRandom.hex(6) }
+    i.user
   end
 end
