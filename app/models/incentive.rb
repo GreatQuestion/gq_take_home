@@ -1,5 +1,7 @@
 class Incentive < ApplicationRecord
-  scope :redeemed, -> { where(redeemed: true) }
+  scope :redeemed_incentives, -> { where(redeemed: true) }
 
-
+  validates :redeemed,
+    inclusion: { in: [true, false] },
+    presence: true
 end
