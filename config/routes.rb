@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
-    resources :incentives, only: [:index, :update]
-    resources :redemptions, only: [:index]
+    resources :incentives, only: [:index, :create] do
+      resources :redemptions, only: [:index]
+    end
   end
 
-  get :redeem, to: 'candidates#show'
-  get :setup, to: 'researchers#show'
+  get :redeem, to: 'redemptions#index'
+  get :setup, to: 'setups#index'
+
   root to: 'home#index'
 end
