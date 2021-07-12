@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_012944) do
+ActiveRecord::Schema.define(version: 2021_07_12_195136) do
+
+  create_table "candidate_incentives", force: :cascade do |t|
+    t.integer "incentive_id", null: false
+    t.string "code"
+    t.boolean "redeemed", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["incentive_id"], name: "index_candidate_incentives_on_incentive_id"
+  end
 
   create_table "incentives", force: :cascade do |t|
     t.string "code"
@@ -18,4 +27,5 @@ ActiveRecord::Schema.define(version: 2021_06_07_012944) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "candidate_incentives", "incentives"
 end

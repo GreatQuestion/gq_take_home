@@ -1,7 +1,4 @@
+# Incentive is the coupon set by the researcher (person who is creating the campaign or whatever resoruce)
 class Incentive < ApplicationRecord
-  scope :redeemed_incentives, -> { where(redeemed: true) }
-
-  validates :redeemed,
-    inclusion: { in: [true, false] },
-    presence: true
+  has_many :candidate_incentives, dependent: :destroy
 end
