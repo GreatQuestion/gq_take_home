@@ -4,19 +4,7 @@ class SetupsController < ApplicationController
     render 'index', locals: { incentives: incentives }
   end
 
-  def create
-
-  end
-
   private
-
-  def permitted_params
-    params.permit(:codes)
-  end
-
-  def codes
-    permitted_params[:codes]
-  end
 
   def incentives
     Incentive.all

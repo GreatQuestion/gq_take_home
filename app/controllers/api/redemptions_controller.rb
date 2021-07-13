@@ -1,7 +1,18 @@
 class Api::RedemptionsController < ::Api::BaseController
-  # GET /api/incentives/:incentive_id/redemptions
-  def index
-    render json: { redeemed: redeemed }, status: :ok
+  # POST /api/incentives/:incentive_id/redemptions
+  def create
+    candidate_incentive = candidate_incentives.create(redeemed: true)
+
+    if candidate_incentive.persisted?
+      render json: {
+        candidate_incentive: candidate_incentive,
+        redeemed: redeemed,
+      }, status: :created
+    else
+      render json: {
+        errors: candidate_incentive.errors.messages,
+      }, status: :unprocessable_entity
+    end
   end
 
   private

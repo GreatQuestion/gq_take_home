@@ -1,12 +1,21 @@
 class RedemptionsController < ApplicationController
   # For the candidate, they can visit `/redeem` to redeem a coupon code after the research has been completed. They click
   def index
-    render 'index', locals: {}
+    render 'index', locals: { incentives: incentives }
+  end
+
+  def show
+    render 'show', locals: { incentive: incentive }
   end
 
   private
 
-  def permitted_params
-    params.require(:incentive)
+  # Scope this and fix routes
+  def incentives
+    @_incentives ||= Incentive.all
+  end
+
+  def incentive
+    @_incentive ||= incentives.find_by(code: params[:code])
   end
 end
