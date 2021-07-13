@@ -10,13 +10,15 @@ require("channels")
 
 import { ResearcherApp } from  'components/ResearcherApp'
 import { CandidateApp } from  'components/CandidateApp'
+import { CandidatesApp } from 'components/CandidatesApp'
+
 import { mount, docReady } from 'utils'
 
 docReady(() => {
   mount('ResearcherApp', ResearcherApp)
   mount('CandidateApp', CandidateApp)
+  mount('CandidatesApp', CandidatesApp)
 })
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
