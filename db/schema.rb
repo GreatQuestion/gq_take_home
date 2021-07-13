@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_195136) do
     t.boolean "redeemed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_candidate_incentives_on_code", unique: true
     t.index ["incentive_id"], name: "index_candidate_incentives_on_incentive_id"
   end
 
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_195136) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_incentives_on_code", unique: true
   end
 
   add_foreign_key "candidate_incentives", "incentives"

@@ -7,5 +7,7 @@ class CreateCandidateIncentives < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :candidate_incentives, :code, unique: true
   end
 end

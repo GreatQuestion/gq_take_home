@@ -8,8 +8,6 @@ class Api::IncentivesController < ApplicationController
 
   def create
     if update_params[:code].present?
-      data = service.perform
-
       ::Incentive.upsert_all(data, unique_by: :code)
 
       render json: {
@@ -23,10 +21,8 @@ class Api::IncentivesController < ApplicationController
     end
   end
 
-  # TODO : See if update works
   def update
-    data = service.perform
-    incentive.update(data)
+    Incentive.upsert_all(data)
 
     render json: incentive
   end
@@ -39,6 +35,10 @@ class Api::IncentivesController < ApplicationController
 
   def service
     @_service ||= ::Secret::CodeService.new(codes: update_params[:code])
+  end
+
+  def data
+    @_data ||= service.perform
   end
 
   def incentives
