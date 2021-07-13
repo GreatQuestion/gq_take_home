@@ -6,7 +6,7 @@ class CandidateIncentive < ApplicationRecord
 
   scope :redeemed_incentives, -> { where(redeemed: true) }
 
-  validates :redeemed, inclusion: { in: [true, false] }, presence: true
+  validates :redeemed, inclusion: { in: [true, false] }
 
   def set_code
     return if code.present?
