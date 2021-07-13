@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { updateIncentive } from '@api/endpoints';
+import { createIncentives } from '@api/endpoints';
 
 interface Props {
   data: Incentive[];
 }
-export const IncentiveForm: React.FC<Props> = ({ data }) => {
+export const IncentiveForm: React.FC<Props> = ({ allCodes }) => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
-  const [inputValue, setInputValue] = useState(data[0].code);
+  const [inputValue, setInputValue] = useState(allCodes)
 
   async function handleClickSave() {
     setSaving(true);
-    const incentive = await updateIncentive(data[0].id, { code: inputValue });
-    if (incentive) {
+    const incentives = await createIncentives({ code: inputValue });
+    if (incentives) {
       setMessage('Successfully updated!');
       setTimeout(() => setMessage(''), 2000);
     } else {
@@ -25,10 +25,11 @@ export const IncentiveForm: React.FC<Props> = ({ data }) => {
   return (
     <div>
       <div className="flex space-x-2 pb-4">
-        <input
+        <textarea
+          rows="5"
+          cols="50"
           disabled={saving}
           className="text-xl border"
-          type="text"
           name="incentive_code"
           value={inputValue}
           onChange={e => setInputValue(e.currentTarget.value)}
