@@ -7,3 +7,7 @@ interface Model {
 interface Incentive extends Model {
   code: string;
 }
+
+interface CandidateIncentive extends Model {
+  code: string;
+}
