@@ -17,12 +17,10 @@ export const CandidatesApp: React.FC = () => {
   }, []);
 
   const copyCodeToClipboard = () => {
-    // TODO : Figure out copy functionality with ref hooks
+    console.log('TODO : Implement this with refHooks!')
     // input.current.focus()
     // document.execCommand('copy')
   }
-
-  console.log(data, 'data inside of candidates app')
 
   return (
     <div className="px-12 py-6">

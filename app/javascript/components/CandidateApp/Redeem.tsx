@@ -12,7 +12,7 @@ export const Redeem: React.FC<Props> = ({ data }) => {
   const [candidateIncentiveValue, setCandidateIncentiveValue] = useState(null);
 
   const { incentive } = data;
-  const { code, id } = incentive
+  const { code, id } = incentive;
 
   async function handleClickRedeem() {
     setRedeemed(false);
