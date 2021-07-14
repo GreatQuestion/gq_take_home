@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
-    resources :incentives, only: [:index, :create] do
+    resources :incentives, only: [:index, :show, :create] do
       resources :redemptions, only: [:create]
     end
   end
