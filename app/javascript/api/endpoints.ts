@@ -7,7 +7,11 @@ export const getIncentives = async (): Promise<Incentive[]> => {
 };
 
 export const getIncentive = async (id: number): Promise<Incentive[]> => {
-  const resp = await fetch(`/api/incentives/${id}`);
+  const resp = await fetch(`/api/incentives/${id}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
   if (resp.ok) {
     return await resp.json();
   }
@@ -17,7 +21,7 @@ export const getIncentive = async (id: number): Promise<Incentive[]> => {
 export const createIncentives = async (params: Partial<Incentive>): Promise<Incentive> => {
   const resp = await fetch('/api/incentives', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   });
   if (resp.ok) {
@@ -29,7 +33,7 @@ export const createIncentives = async (params: Partial<Incentive>): Promise<Ince
 export const updateIncentive = async (id: number, params: Partial<Incentive>): Promise<Incentive> => {
   const resp = await fetch(`/api/incentives/${id}`, {
     method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   });
   if (resp.ok) {
@@ -38,10 +42,10 @@ export const updateIncentive = async (id: number, params: Partial<Incentive>): P
   return null;
 };
 
-export const createRedemption = async (id: number): Promise<CandidateIncentive> => {
-  const resp = await fetch(`/api/incentive/${}/redemptions/${id}`, {
+export const createRedemption = async (id: number, params: Partial<CandidateIncentive>): Promise<CandidateIncentive> => {
+  const resp = await fetch(`/api/incentives/${id}/redemptions`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   });
   if (resp.ok) {
