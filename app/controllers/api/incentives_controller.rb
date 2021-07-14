@@ -6,6 +6,12 @@ class Api::IncentivesController < ApplicationController
     }, status: :ok
   end
 
+  def show
+    render json: {
+      incentive: incentive,
+    }, status: :ok
+  end
+
   def create
     if update_params[:code].present?
       ::Incentive.upsert_all(data, unique_by: :code)
