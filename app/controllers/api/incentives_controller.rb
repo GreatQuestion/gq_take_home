@@ -17,5 +17,7 @@ class Api::IncentivesController < ApplicationController
 
   def update_params
     params.require(:incentive).permit(:code)
+    # How rails cleans the params passed in. you need to tell it its getting an array
+    # params.require(:incentive).permit(:code, codes: [])
   end
 end

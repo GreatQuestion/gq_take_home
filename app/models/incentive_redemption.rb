@@ -1,0 +1,2 @@
+class IncentiveRedemption < ApplicationRecord
+end
