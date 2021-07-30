@@ -22,7 +22,7 @@ export const ResearcherApp: React.FC = () => {
 
       {loading && <span>Loading...</span>}
 
-      {!loading && <IncentiveForm data={data} />}
+      {!loading && <IncentiveForm />}
     </div>
   );
 };

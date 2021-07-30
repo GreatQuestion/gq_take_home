@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { updateIncentive } from '@api/endpoints';
+import { createIncentive } from '@api/endpoints';
 
 interface Props {
-  data: Incentive[];
 }
-export const IncentiveForm: React.FC<Props> = ({ data }) => {
+export const IncentiveForm: React.FC<Props> = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
-  const [inputValue, setInputValue] = useState(data[0].code);
+  const [inputValue, setInputValue] = useState("");
 
-  async function handleClickSave() {
+  async function handleClickCreate() {
     setSaving(true);
-    const incentive = await updateIncentive(data[0].id, { code: inputValue });
+    const incentive = await createIncentive({ code: inputValue });
     if (incentive) {
       setMessage('Successfully updated!');
       setTimeout(() => setMessage(''), 2000);
+      setInputValue("");
     } else {
       setMessage('An error occured');
     }
@@ -36,9 +36,9 @@ export const IncentiveForm: React.FC<Props> = ({ data }) => {
         <button
           disabled={saving}
           className="hover:bg-gray-100 bg-gray-200 rounded-md px-4 py-2"
-          onClick={handleClickSave}
+          onClick={handleClickCreate}
         >
-          Save
+          Create
         </button>
       </div>
       {message && <div className="text-gray-600 italic">{message}</div>}
