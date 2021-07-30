@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { getIncentives } from '@api/endpoints';
 import { IncentiveForm } from './IncentiveForm';
+import { IncentiveList } from './IncentiveList';
 
 export const ResearcherApp: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,12 @@ export const ResearcherApp: React.FC = () => {
       });
   }, []);
 
+  const updateList = (incentive: Incentive) => {
+    const newData = [...data]
+    newData.unshift(incentive);
+    setData(newData);
+  }
+
   return (
     <div className="px-12 py-6">
       <h1 className="text-2xl font-bold mb-6">Setup incentive</h1>
@@ -22,7 +29,9 @@ export const ResearcherApp: React.FC = () => {
 
       {loading && <span>Loading...</span>}
 
-      {!loading && <IncentiveForm />}
+      {!loading && <IncentiveForm updateList={updateList} />}
+
+      {!loading && <IncentiveList data={data} />}
     </div>
   );
 };

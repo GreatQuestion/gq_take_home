@@ -9,23 +9,21 @@ class ResearcherTest < ApplicationSystemTestCase
 
     it 'should_show_the_current_coupon' do
       visit '/setup'
-      assert_equal 'COUPON_123', find_field('incentive_code').value
+      assert_text 'COUPON_123' #shows on our list
     end
   end
 
-  describe 'updating_incentive' do
-    let(:incentive) { create(:incentive, code: 'OLD_CODE')}
+  describe 'creating_incentive' do
 
-    setup do
-      incentive ## create incentive beforehand as let doesnt run until called
-    end
+    # setup do
+    #   incentive ## create incentive beforehand as let doesnt run until called
+    # end
     
     it 'should_update_the_code' do
       visit '/setup'
-      fill_in 'incentive_code', with: 'NEW_CODE'
-      click_on 'Save'
-      assert_text 'Successfully updated'
-      assert_equal 'NEW_CODE', incentive.reload.code
+      fill_in 'incentive_code', with: 'COUPON_123'
+      click_on 'Create'
+      assert_text 'COUPON_123' # shows on list
     end
   end
 end

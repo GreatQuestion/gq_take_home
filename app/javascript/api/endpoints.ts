@@ -7,7 +7,7 @@ export const getIncentives = async (): Promise<Incentive[]> => {
   return null;
 };
 
-export const redeemIncentive = async (): Promise<Incentive[]> => {
+export const redeemIncentive = async (): Promise<Incentive> => {
   const resp = await fetch('/api/incentives/redeem');
   if (resp.ok) {
     return await resp.json();

@@ -17,6 +17,9 @@ class Api::IncentivesController < ApplicationController
 
   def create
     @incentive = Incentive.create(create_params)
+    if @incentive.id == nil
+      raise exception
+    end
     render json: @incentive.to_json
   end
 

@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { createIncentive } from '@api/endpoints';
 
 interface Props {
+  updateList(incentive: Incentive): void;
 }
-export const IncentiveForm: React.FC<Props> = () => {
+export const IncentiveForm: React.FC<Props> = ({ updateList }) => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [inputValue, setInputValue] = useState("");
@@ -13,9 +14,10 @@ export const IncentiveForm: React.FC<Props> = () => {
     setSaving(true);
     const incentive = await createIncentive({ code: inputValue });
     if (incentive) {
-      setMessage('Successfully updated!');
+      setMessage('Successfully created!');
       setTimeout(() => setMessage(''), 2000);
       setInputValue("");
+      updateList({code: inputValue, redeemed: false} as Incentive)
     } else {
       setMessage('An error occured');
     }

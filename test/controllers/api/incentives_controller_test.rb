@@ -18,16 +18,31 @@ class Api::IncentivesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  describe 'PUT #update' do
-    subject { put "/api/incentives/#{incentive.id}", params: {incentive: params} }
+  describe 'POST #create' do
+    subject { post "/api/incentives", params: {incentive: params} }
 
-    let(:incentive) { create(:incentive) }
     let(:params) { {code: 'FOOBAR'} }
 
-    it 'should update the incentive' do
+    it 'should create the incentive' do
       subject
       assert_response :success
-      assert_equal 'FOOBAR', incentive.reload.code
+      data = response.parsed_body
+      assert_equal 'FOOBAR', data['code']
+    end
+  end
+
+  describe 'Is Unique' do
+    subject {get '/api/incentives/redeem'}
+
+    setup do
+      create(:incentive, code: 'COUPON1')
+    end
+
+    it 'should be unique' do
+      subject
+      assert_response :success
+      data = response.parsed_body
+      assert_equal true, data['redeemed']
     end
   end
 end
