@@ -13,7 +13,10 @@ type Action =
   | { type: "saved"; payload: Incentive }
   | { type: "saving" }
   | { type: "error"; payload: Error }
-  | { type: "change"; payload: Incentive["code"] };
+  | {
+      type: "change";
+      payload: { index: number; code: Incentive["codes"][number] };
+    };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -35,7 +38,14 @@ const reducer = (state: State, action: Action): State => {
     case "change":
       return {
         status: "changing",
-        incentive: { ...state.incentive, code: action.payload },
+        incentive: {
+          ...state.incentive,
+          codes: [
+            ...state.incentive.codes.slice(0, action.payload.index),
+            action.payload.code,
+            ...state.incentive.codes.slice(action.payload.index + 1),
+          ],
+        },
       };
   }
 };
@@ -46,7 +56,7 @@ export const IncentiveForm = ({ incentive }: { incentive: Incentive }) => {
     status: "waiting",
   });
 
-  const handleSave = async () => {
+  const save = async () => {
     dispatch({ type: "saving" });
 
     try {
@@ -58,23 +68,43 @@ export const IncentiveForm = ({ incentive }: { incentive: Incentive }) => {
     }
   };
 
+  const addCode = () => {
+    dispatch({
+      type: "change",
+      payload: { index: state.incentive.codes.length, code: "" },
+    });
+  };
+
   return (
     <div>
+      {state.incentive.codes.map((code, index) => (
+        <div className="space-x-2 pb-4" key={index}>
+          <input
+            disabled={state.status === "saving"}
+            className="text-xl border"
+            type="text"
+            name="incentive_code"
+            value={code}
+            onChange={(e) =>
+              dispatch({
+                type: "change",
+                payload: { index, code: e.currentTarget.value },
+              })
+            }
+          />
+        </div>
+      ))}
       <div className="flex space-x-2 pb-4">
-        <input
-          disabled={state.status === "saving"}
-          className="text-xl border"
-          type="text"
-          name="incentive_code"
-          value={state.incentive.code}
-          onChange={(e) =>
-            dispatch({ type: "change", payload: e.currentTarget.value })
-          }
-        />
+        <button
+          className="hover:bg-gray-100 bg-gray-200 rounded-md px-4 py-2"
+          onClick={addCode}
+        >
+          Add code
+        </button>
         <button
           disabled={state.status === "saving"}
           className="hover:bg-gray-100 bg-gray-200 rounded-md px-4 py-2"
-          onClick={handleSave}
+          onClick={save}
         >
           Save
         </button>

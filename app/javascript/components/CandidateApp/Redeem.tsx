@@ -11,7 +11,7 @@ export const Redeem: React.FC<Props> = ({ data }) => {
     setRedeemed(true);
   }
 
-  const code = data[0]?.code;
+  const code = data[0]?.codes?.[0];
 
   if (code === undefined)
     throw new Error("code undefined - data array is empty");
