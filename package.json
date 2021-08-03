@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "serve": "bundle exec rails s",
-    "start": "./bin/webpack-dev-server"
+    "start": "./bin/webpack-dev-server",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
