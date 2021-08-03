@@ -6,7 +6,9 @@
     "start": "./bin/webpack-dev-server",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache",
     "lint:fix": "yarn lint --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "bundle exec rails test",
+    "test:system": "bundle exec raist test:system"
   },
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
