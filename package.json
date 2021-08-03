@@ -1,6 +1,10 @@
 {
   "name": "gq_take_home",
   "private": true,
+  "scripts": {
+    "serve": "bundle exec rails s",
+    "start": "./bin/webpack-dev-server"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
