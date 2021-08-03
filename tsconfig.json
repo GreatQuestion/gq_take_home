@@ -3,30 +3,27 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "module": "es6",
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "node_modules/*",
-        "app/packs/*"
-      ],
-      "@api/*": ["app/javascript/api/*"],
+      "*": ["node_modules/*", "app/packs/*"],
+      "@api/*": ["app/javascript/api/*"]
     },
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
-    "noEmit": true
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "node_modules",
-    "vendor",
-    "public"
-  ],
+  "exclude": ["**/*.spec.ts", "node_modules", "vendor", "public"],
   "compileOnSave": false
 }

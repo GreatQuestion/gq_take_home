@@ -5,7 +5,8 @@
     "serve": "bundle exec rails s",
     "start": "./bin/webpack-dev-server",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --cache",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
