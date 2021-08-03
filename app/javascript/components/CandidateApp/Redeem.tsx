@@ -1,36 +1,36 @@
+import { useIncentive } from "../../hooks";
 import React from "react";
-import { useState } from "react";
 
-interface Props {
-  data: Incentive[];
-}
-export const Redeem: React.FC<Props> = ({ data }) => {
-  const [redeemed, setRedeemed] = useState(false);
-
-  async function handleClickRedeem() {
-    setRedeemed(true);
-  }
-
-  const code = data[0]?.codes?.[0];
-
-  if (code === undefined)
-    throw new Error("code undefined - data array is empty");
+export const Redeem = ({
+  incentive,
+}: {
+  incentive: Incentive;
+}): JSX.Element => {
+  const [state, { redeem }] = useIncentive(incentive);
 
   return (
     <div>
       <div className="pb-4">
         <button
-          disabled={redeemed}
+          disabled={state.incentive.redeemed}
           className="hover:bg-gray-100 bg-gray-200 rounded-md px-4 py-2"
-          onClick={handleClickRedeem}
+          onClick={redeem}
         >
           Redeem
         </button>
       </div>
 
-      {redeemed && (
-        <div className="py-4 text-green-600 italic">
-          Your code is: {code}. Thanks for participating in our research!
+      {state.incentive.redeemed && (
+        <div className="py-4 ">
+          <span className="text-green-600 italic">
+            Your codes are listed below. Thanks for participating in our
+            research!
+          </span>
+          <div>
+            {state.incentive.codes.map((code) => (
+              <span key={code}>{code}</span>
+            ))}
+          </div>
         </div>
       )}
     </div>

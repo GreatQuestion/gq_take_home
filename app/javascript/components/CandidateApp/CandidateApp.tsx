@@ -11,7 +11,12 @@ export const CandidateApp: React.FC = () => {
 
       {state.status === "loading" ? <span>{"Loading..."}</span> : null}
       {state.status === "error" ? <span>{"An error occurred"}</span> : null}
-      {state.status === "loaded" ? <Redeem data={state.incentives} /> : null}
+
+      {state.status === "loaded"
+        ? state.incentives.map((incentive) => (
+            <Redeem key={incentive.id} {...{ incentive }} />
+          ))
+        : null}
     </div>
   );
 };

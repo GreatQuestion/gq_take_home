@@ -7,12 +7,14 @@ type State = { incentive: Incentive } & (
   | { status: "error"; error: Error; message: "An error occurred" }
   | { status: "waiting" }
   | { status: "changing" }
+  | { status: "redeemed" }
 );
 
 type Action =
   | { type: "saved"; payload: Incentive }
   | { type: "saving" }
   | { type: "error"; payload: Error }
+  | { type: "redeem" }
   | {
       type: "change";
       payload: { index: number; code: Incentive["codes"][number] };
@@ -35,6 +37,14 @@ const reducer = (state: State, action: Action): State => {
       };
     case "saving":
       return { status: "saving", incentive: state.incentive };
+    case "redeem":
+      if (state.incentive.redeemed)
+        throw new Error("Incentive already redeemed");
+
+      return {
+        status: "redeemed",
+        incentive: { ...state.incentive, redeemed: true },
+      };
     case "change":
       return {
         status: "changing",
@@ -58,6 +68,7 @@ export const useIncentive = (
     save: () => Promise<void>;
     addCode: () => void;
     handleInputChange: (index: number) => ChangeEventHandler<HTMLInputElement>;
+    redeem: () => void;
   }
 ] => {
   const [state, dispatch] = useReducer(reducer, {
@@ -92,5 +103,7 @@ export const useIncentive = (
         payload: { index, code: e.currentTarget.value },
       });
 
-  return [state, { save, addCode, handleInputChange }];
+  const redeem = () => dispatch({ type: "redeem" });
+
+  return [state, { save, addCode, handleInputChange, redeem }];
 };

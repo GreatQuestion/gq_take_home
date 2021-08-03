@@ -1,11 +1,11 @@
+type DbIncentive = Omit<Incentive, "codes" | "redeemed"> & { code: string };
+
 const convertIncentive =
   (codes?: string[]) =>
-  ({
-    code,
-    ...old
-  }: Omit<Incentive, "codes"> & { code: string }): Incentive => ({
+  ({ code, ...old }: DbIncentive): Incentive => ({
     ...old,
     codes: codes ?? [code],
+    redeemed: false,
   });
 
 export const getIncentives = async (): Promise<Incentive[]> => {
@@ -19,14 +19,14 @@ export const getIncentives = async (): Promise<Incentive[]> => {
 export const updateIncentive = async (
   incentive: Partial<Incentive> & Pick<Incentive, "id">
 ): Promise<Incentive> => {
-  const { id, codes, ...params } = incentive;
+  const { id, codes } = incentive;
 
   // TODO: fix api+db to handle multiple codes
   const code = codes?.[0];
   const resp = await fetch(`/api/incentives/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...params, code }),
+    body: JSON.stringify({ code }),
   });
 
   if (resp.ok)
