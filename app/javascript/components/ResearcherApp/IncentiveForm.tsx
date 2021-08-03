@@ -46,16 +46,17 @@ export const IncentiveForm = ({ incentive }: { incentive: Incentive }) => {
     status: "waiting",
   });
 
-  const handleSave = useCallback(async () => {
+  const handleSave = async () => {
     dispatch({ type: "saving" });
 
     try {
       const payload = await updateIncentive(state.incentive);
+
       dispatch({ type: "saved", payload });
     } catch (error) {
       dispatch({ type: "error", payload: error });
     }
-  }, []);
+  };
 
   return (
     <div>
