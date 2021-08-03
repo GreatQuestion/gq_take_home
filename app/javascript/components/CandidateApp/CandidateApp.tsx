@@ -1,18 +1,16 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { getIncentives } from '@api/endpoints';
-import { Redeem } from './Redeem';
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { getIncentives } from "@api/endpoints";
+import { Redeem } from "./Redeem";
 
 export const CandidateApp: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Incentive[]>(null);
+  const [data, setData] = useState<Incentive[]>();
 
   useEffect(() => {
     getIncentives()
-      .then(incentives => {
-        setData(incentives);
-        setLoading(false);
-      });
+      .then(setData)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -21,7 +19,7 @@ export const CandidateApp: React.FC = () => {
 
       {loading && <span>Loading...</span>}
 
-      {!loading && <Redeem data={data} />}
+      {!loading && data && <Redeem data={data} />}
     </div>
   );
 };
