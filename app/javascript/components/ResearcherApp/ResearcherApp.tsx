@@ -1,35 +1,9 @@
-import React, { useEffect, useReducer } from "react";
-import { getIncentives } from "@api/endpoints";
+import React from "react";
 import { IncentiveForm } from "./IncentiveForm";
-
-type State =
-  | { status: "loaded"; incentives: Incentive[] }
-  | { status: "loading" }
-  | { status: "error"; error: Error };
-
-type Action =
-  | { type: "loaded"; payload: Incentive[] }
-  | { type: "error"; payload: Error };
-
-const initial: State = { status: "loading" };
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case "loaded":
-      return { status: "loaded", incentives: action.payload };
-    case "error":
-      return { status: "error", error: action.payload };
-  }
-};
+import { useIncentives } from "../../hooks";
 
 export const ResearcherApp = (): JSX.Element => {
-  const [state, dispatch] = useReducer(reducer, initial);
-
-  useEffect(() => {
-    getIncentives()
-      .then((incentives) => dispatch({ type: "loaded", payload: incentives }))
-      .catch((error) => dispatch({ type: "error", payload: error }));
-  }, []);
+  const state = useIncentives();
 
   return (
     <div className="px-12 py-6">
