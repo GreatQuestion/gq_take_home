@@ -1,9 +1,7 @@
-export const getIncentives = async (): Promise<Incentive[] | undefined> => {
+export const getIncentives = async (): Promise<Incentive[]> => {
   const resp = await fetch("/api/incentives");
-  if (resp.ok) {
-    return await resp.json();
-  }
-  return;
+  if (resp.ok) return await resp.json();
+  throw new Error("api error: getIncentives");
 };
 
 export const updateIncentive = async (
