@@ -3,26 +3,22 @@ import { getIncentives } from "@api/endpoints";
 import { IncentiveForm } from "./IncentiveForm";
 
 type State =
-  | { status: "loaded"; incentives: Incentive[]; error: undefined }
-  | { status: "loading"; incentives: undefined; error: undefined }
-  | { status: "error"; incentives: undefined; error: Error };
+  | { status: "loaded"; incentives: Incentive[] }
+  | { status: "loading" }
+  | { status: "error"; error: Error };
 
 type Action =
   | { type: "loaded"; payload: Incentive[] }
   | { type: "error"; payload: Error };
 
-const initial: State = {
-  status: "loading",
-  incentives: undefined,
-  error: undefined,
-};
+const initial: State = { status: "loading" };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "loaded":
-      return { status: "loaded", incentives: action.payload, error: undefined };
+      return { status: "loaded", incentives: action.payload };
     case "error":
-      return { status: "error", incentives: undefined, error: action.payload };
+      return { status: "error", error: action.payload };
   }
 };
 
@@ -43,10 +39,13 @@ export const ResearcherApp = (): JSX.Element => {
       </p>
 
       {state.status === "loading" ? <span>{"Loading..."}</span> : null}
-      {state.status === "loaded" ? (
-        <IncentiveForm data={state.incentives} />
-      ) : null}
       {state.status === "error" ? <span>{"An error occurred"}</span> : null}
+
+      {state.status === "loaded"
+        ? state.incentives.map((incentive) => (
+            <IncentiveForm key={incentive.id} {...{ incentive }} />
+          ))
+        : null}
     </div>
   );
 };

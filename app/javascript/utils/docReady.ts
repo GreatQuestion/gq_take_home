@@ -1,5 +1,4 @@
 export function docReady(fn: () => void): void {
-  console.log("docReady");
   // see if DOM is already available
   if (
     document.readyState === "complete" ||
