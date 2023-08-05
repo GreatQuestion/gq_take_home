@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
 
-interface Props {
-  data: Incentive[];
-}
-export const Redeem: React.FC<Props> = ({ data }) => {
+// interface Props {
+//   data: Incentive[];
+// }
+export const Redeem = ({ data }) => {
   const [redeemed, setRedeemed] = useState(false);
 
   async function handleClickRedeem() {

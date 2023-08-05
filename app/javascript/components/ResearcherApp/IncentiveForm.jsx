@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 import { updateIncentive } from '@api/endpoints';
 
-interface Props {
-  data: Incentive[];
-}
-export const IncentiveForm: React.FC<Props> = ({ data }) => {
+// interface Props {
+//   data: Incentive[];
+// }
+export const IncentiveForm = ({ data }) => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [inputValue, setInputValue] = useState(data[0].code);

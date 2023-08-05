@@ -1,5 +1,5 @@
 
-export const getIncentives = async (): Promise<Incentive[]> => {
+export const getIncentives = async () => {
   const resp = await fetch('/api/incentives');
   if (resp.ok) {
     return await resp.json();
@@ -7,7 +7,7 @@ export const getIncentives = async (): Promise<Incentive[]> => {
   return null;
 };
 
-export const updateIncentive = async (id: number, params: Partial<Incentive>): Promise<Incentive> => {
+export const updateIncentive = async (id, params) => {
   const resp = await fetch(`/api/incentives/${id}`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
