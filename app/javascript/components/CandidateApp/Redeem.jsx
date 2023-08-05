@@ -5,25 +5,30 @@ import { useState } from 'react';
 //   data: Incentive[];
 // }
 export const Redeem = ({ data }) => {
-  const [redeemed, setRedeemed] = useState(false);
+  const [redeemed, setRedeemed] = useState(true);
+  const [buttonColor, setButtonColor] = useState('blue')
+  const [cursor, setCursor] = useState('pointer')
 
   async function handleClickRedeem() {
-    setRedeemed(true);
+    setRedeemed(false);
+    setButtonColor('gray')
+    setCursor('not-allowed');
   }
 
   return (
     <div>
       <div className="pb-4">
         <button
-          disabled={redeemed}
-          className="hover:bg-gray-100 bg-gray-200 rounded-md px-4 py-2"
+          disabled={!redeemed}
+          style={{ backgroundColor: buttonColor, cursor: cursor }}
+          className="rounded-md px-4 py-2, color: text-white"
           onClick={handleClickRedeem}
         >
           Redeem
         </button>
       </div>
 
-      {redeemed && (
+      {!redeemed && (
         <div className="py-4 text-green-600 italic">
           Your code is: {data[0].code}. Thanks for participating in our research!
         </div>
