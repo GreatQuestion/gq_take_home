@@ -21,10 +21,9 @@ gem 'jbuilder'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -44,6 +43,8 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'minitest'
+  gem 'minitest-spec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers

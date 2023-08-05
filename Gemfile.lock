@@ -115,6 +115,9 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.19.0)
+    minitest-spec-rails (7.1.0)
+      minitest (>= 5.0)
+      railties (>= 4.1)
     msgpack (1.7.2)
     net-imap (0.3.7)
       date
@@ -209,6 +212,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.3)
       tzinfo (>= 1.0.0)
+    wdm (0.1.1)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -241,6 +245,8 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder
   listen
+  minitest
+  minitest-spec-rails
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
@@ -250,6 +256,7 @@ DEPENDENCIES
   spring-watcher-listen
   turbolinks
   tzinfo-data
+  wdm (>= 0.1.0)
   web-console
   webdrivers (= 5.3.0)
   webpacker
