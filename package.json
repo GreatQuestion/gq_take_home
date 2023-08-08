@@ -10,6 +10,7 @@
     "@rails/webpacker": "^5.1.0",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
+    "axios": "^1.4.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "fork-ts-checker-webpack-plugin": "^6.2.10",
