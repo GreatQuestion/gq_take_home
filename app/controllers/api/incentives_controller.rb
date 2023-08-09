@@ -6,13 +6,6 @@ class Api::IncentivesController < ApplicationController
     render json: @incentives.to_json
   end
 
-  def update
-    @incentive = Incentive.find(params[:id])
-
-    @incentive.update!(update_params)
-    render json: @incentive.to_json
-  end
-
   def new
     Incentive.new
   end

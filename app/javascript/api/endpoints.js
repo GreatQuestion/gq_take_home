@@ -1,20 +1,24 @@
-
+import axios from "axios";
 export const getIncentives = async () => {
-  const resp = await fetch('/api/incentives');
+  const resp = await fetch("/api/incentives");
   if (resp.ok) {
     return await resp.json();
   }
   return null;
 };
 
-export const updateIncentive = async (id, params) => {
-  const resp = await fetch(`/api/incentives/${id}`, {
-    method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(params),
-  });
-  if (resp.ok) {
-    return await resp.json();
+export const AddIncentive = async (newCode, setCouponCodes, setNewCode) => {
+  try {
+    const resp = await axios.post("/api/incentives", {
+      code: newCode,
+    });
+    if (resp.status === 201) {
+      setCouponCodes((prevCouponCodes) => [...prevCouponCodes, newCode]);
+      setNewCode("");
+    } else {
+      console.error("Failed to add coupon code");
+    }
+  } catch(error) {
+    console.log("Error adding coupon code:", error)
   }
-  return null;
 };
