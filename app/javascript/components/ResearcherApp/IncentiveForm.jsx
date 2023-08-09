@@ -36,13 +36,6 @@ export const IncentiveForm = ({ data }) => {
         </button>
       </div>
       {message && <div className="text-gray-600 italic">{message}</div>}
-      <h1 className="text-2xl font-bold mb-6">Coupon Setup</h1>
-      <ul>
-        {couponCodes.map((code, index) => (
-          <li key={index}>{code}</li>
-        ))}
-      </ul>
-      
     </div>
   );
 };

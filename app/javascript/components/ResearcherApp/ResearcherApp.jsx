@@ -24,6 +24,12 @@ export const ResearcherApp = () => {
       {loading && <span>Loading...</span>}
 
       {!loading && <IncentiveForm data={data} />}
+      <h1 className="text-2xl font-bold mb-6">Your Data codes:</h1>
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>{item.code}</li>
+        ))}
+      </ul>
     </div>
   );
 };
