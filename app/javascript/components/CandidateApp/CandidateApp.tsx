@@ -3,25 +3,31 @@ import { useEffect, useState } from 'react';
 import { getIncentives } from '@api/endpoints';
 import { Redeem } from './Redeem';
 
-export const CandidateApp: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Incentive[]>(null);
+const CandidateApp = () => {
+  const [redeemedCodes, setRedeemedCodes] = useState([]);
+  const [currentCode, setCurrentCode] = useState('');
 
-  useEffect(() => {
-    getIncentives()
-      .then(incentives => {
-        setData(incentives);
-        setLoading(false);
-      });
-  }, []);
+  const handleRedeemCode = () => {
+    // Check if the code has already been redeemed
+    if (!redeemedCodes.includes(currentCode)) {
+      // Mark the code as redeemed
+      setRedeemedCodes([...redeemedCodes, currentCode]);
+    }
+    setCurrentCode('');
+  };
 
   return (
-    <div className="px-12 py-6">
-      <h1 className="text-2xl font-bold mb-6">Redeem incentive</h1>
-
-      {loading && <span>Loading...</span>}
-
-      {!loading && <Redeem data={data} />}
+    <div>
+      <h1>Candidate Redeem</h1>
+      <input
+        type="text"
+        value={currentCode}
+        onChange={(e) => setCurrentCode(e.target.value)}
+      />
+      <button onClick={handleRedeemCode}>Redeem</button>
+      {redeemedCodes.includes(currentCode) && <p>Code already redeemed.</p>}
     </div>
   );
 };
+
+export default CandidateApp;

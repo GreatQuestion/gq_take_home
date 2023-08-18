@@ -1,7 +1,23 @@
-<h1> GQ Coding Exercise: Incentive Redeemer </h1>
-<div>
-<%= link_to 'Setup', setup_path %>
-</div>
-<div>
-<%= link_to 'Redeem', redeem_path %>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Incentive Redeemer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <!-- Add any additional stylesheets or CSS links here -->
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-8">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h1 class="text-3xl font-semibold mb-6">GQ Coding Exercise: Incentive Redeemer</h1>
+      <div class="flex justify-between">
+        <div>
+          <%= link_to 'Setup', setup_path, class: "text-blue-500 hover:underline" %>
+        </div>
+        <div>
+          <%= link_to 'Redeem', redeem_path, class: "text-blue-500 hover:underline" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

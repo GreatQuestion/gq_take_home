@@ -1,0 +1,23 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-semibold mb-4">Candidate Redeem</h1>
+  
+  <%= form_with(model: @coupon, url: redeem_path, method: :post) do |form| %>
+    <div class="mb-4">
+      <%= form.label :code, class: "block text-gray-700 font-semibold mb-2" %>
+      <%= form.text_field :code, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <%= form.submit "Redeem", class: "bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  <% end %>
+
+  <% if @redeemed_codes.present? %>
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold mb-2">Redeemed Coupon Codes</h2>
+      <ul class="list-disc pl-6">
+        <% @redeemed_codes.each do |code| %>
+          <li><%= code %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

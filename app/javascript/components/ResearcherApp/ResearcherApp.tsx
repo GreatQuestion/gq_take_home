@@ -3,26 +3,32 @@ import { useEffect, useState } from 'react';
 import { getIncentives } from '@api/endpoints';
 import { IncentiveForm } from './IncentiveForm';
 
-export const ResearcherApp: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Incentive[]>(null);
 
-  useEffect(() => {
-    getIncentives()
-      .then(incentives => {
-        setData(incentives);
-        setLoading(false);
-      });
-  }, []);
+const ResearcherApp = () => {
+  const [couponCodes, setCouponCodes] = useState([]);
+  const [newCode, setNewCode] = useState('');
+
+  const handleAddCode = () => {
+    setCouponCodes([...couponCodes, newCode]);
+    setNewCode('');
+  };
 
   return (
-    <div className="px-12 py-6">
-      <h1 className="text-2xl font-bold mb-6">Setup incentive</h1>
-      <p className="mb-4">Enter the coupon code for the candidate to receive:</p>
-
-      {loading && <span>Loading...</span>}
-
-      {!loading && <IncentiveForm data={data} />}
+    <div>
+      <h1>Researcher Setup</h1>
+      <input
+        type="text"
+        value={newCode}
+        onChange={(e) => setNewCode(e.target.value)}
+      />
+      <button onClick={handleAddCode}>Add Code</button>
+      <ul>
+        {couponCodes.map((code, index) => (
+          <li key={index}>{code}</li>
+        ))}
+      </ul>
     </div>
   );
 };
+
+export default ResearcherApp;
